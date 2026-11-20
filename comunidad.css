@@ -49,6 +49,12 @@
 .k-opinion p{color:#c9d8f5;font-size:15.5px;white-space:pre-wrap;overflow-wrap:anywhere;margin:0}
 .k-sugerencia{background:#0b1430;border:1px solid #1a2d5c;border-radius:12px;padding:10px 12px}
 .k-sugerencia small{display:block;color:var(--k-hielo);font-weight:600;font-size:12.5px;letter-spacing:.4px;text-transform:uppercase;margin-bottom:3px}
+.k-moderada{align-self:flex-start;font-size:12.5px;color:#ffd9a0;border:1px solid #6b5420;background:#2a2108;border-radius:99px;padding:2px 10px}
+.k-respuesta{border-left:3px solid var(--k-hielo);background:#0b1636;border-radius:4px 12px 12px 4px;padding:10px 14px}
+.k-respuesta-cabeza{display:flex;align-items:center;gap:8px;margin-bottom:4px;flex-wrap:wrap}
+.k-respuesta-cabeza img{width:22px;height:22px}
+.k-respuesta-cabeza b{color:var(--k-hielo2);font-size:14px}
+.k-respuesta-cabeza time{color:var(--k-suave);font-size:12.5px}
 .k-opinion .k-acciones{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto}
 .k-tuya{font-size:12px;color:#0b1430;background:var(--k-hielo2);border-radius:99px;padding:2px 9px;font-weight:700;flex:none}
 .k-estrellas{display:inline-flex;gap:2px;vertical-align:middle}

@@ -149,6 +149,12 @@ async function pintarCuenta(u) {
           }
         } })));
 
-  main.replaceChildren(el("h1", { texto: "Mi cuenta" }), cabecera, preferencias, bloqueMias, sesion, eliminar);
+  const moderacion = K.esModerador(u) ? el("section", { clase: "bloque", "aria-labelledby": "t-mod" },
+    el("h3", { id: "t-mod", texto: "🛡️ Eres moderador" }),
+    el("p", { clase: "sub2", texto: "En la sección Comunidad, cada opinión te muestra «Responder» (aparece como «Respuesta de KLEVOR»), " +
+      "«Editar (moderar)» para quitar insultos, enlaces o datos personales (se marca como «Editada por moderación») y «Borrar (moderar)»." }),
+    el("a", { href: "./#comunidad", clase: "k-btn k-btn-principal", texto: "Ir a moderar opiniones" })) : null;
+
+  main.replaceChildren(el("h1", { texto: "Mi cuenta" }), cabecera, moderacion, preferencias, bloqueMias, sesion, eliminar);
   if (location.hash === "#mis-opiniones") bloqueMias.scrollIntoView({ behavior: "smooth", block: "start" });
 }

@@ -149,6 +149,7 @@ function aObjeto(s) {
     id: s.id, ...d,
     creada: d.creada ? d.creada.toDate() : new Date(),
     editada: d.editada ? d.editada.toDate() : null,
+    respondida: d.respondida ? d.respondida.toDate() : null,
   };
 }
 
@@ -226,7 +227,7 @@ export async function publicar(u, datos) {
   lote.set(f.doc(db, "opiniones", `${u.uid}_${hueco}`), {
     uid: u.uid, alias: perfil.alias, foto,
     estrellas: datos.estrellas, comentario: datos.comentario, sugerencia: datos.sugerencia,
-    creada: f.serverTimestamp(), editada: null,
+    creada: f.serverTimestamp(), editada: null, respuesta: null, respondida: null, moderada: false,
   });
   lote.update(f.doc(db, "usuarios", u.uid), { ultimaPublicacion: f.serverTimestamp(), ultimoTexto: datos.comentario });
   await lote.commit();
@@ -240,8 +241,27 @@ export async function editar(u, id, datos) {
   const foto = perfil.mostrarFoto ? await fotoDelToken(u) : null;
   await f.updateDoc(f.doc(db, "opiniones", id), {
     estrellas: datos.estrellas, comentario: datos.comentario, sugerencia: datos.sugerencia,
-    alias: perfil.alias, foto, editada: f.serverTimestamp(),
+    alias: perfil.alias, foto, editada: f.serverTimestamp(), moderada: false,
   });
+}
+
+// ------------------------------------------------------------------ moderación
+/** Respuesta pública de KLEVOR a una opinión (texto vacío o null = quitarla). Solo moderadores. */
+export async function responder(id, texto) {
+  const { f, db } = await fs();
+  const limpio = (texto || "").trim();
+  if (limpio.length > 1000) throw new Error("La respuesta puede tener como mucho 1000 letras.");
+  await f.updateDoc(f.doc(db, "opiniones", id), limpio
+    ? { respuesta: limpio, respondida: f.serverTimestamp() }
+    : { respuesta: null, respondida: null });
+}
+
+/** Corrige el texto de una opinión ajena. Queda marcada como «Editada por moderación». */
+export async function moderarTexto(id, { comentario, sugerencia }) {
+  if (!comentario.trim()) throw new Error("El comentario no puede quedar vacío. Si no vale, bórralo.");
+  if (comentario.length > 1000 || sugerencia.length > 500) throw new Error("El texto es demasiado largo.");
+  const { f, db } = await fs();
+  await f.updateDoc(f.doc(db, "opiniones", id), { comentario: comentario.trim(), sugerencia: sugerencia.trim(), moderada: true });
 }
 
 export async function borrar(id) {

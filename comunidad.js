@@ -1,6 +1,6 @@
 // Sección «Comunidad KLEVOR» de la página principal.
 import * as K from "./klevor-firebase.js";
-import { el, estrellas, tarjetaOpinion, ventanaOpinion, confirmar, aviso, pintarCuentaNav } from "./comunidad-ui.js";
+import { el, estrellas, tarjetaOpinion, ventanaOpinion, ventanaResponder, ventanaModerar, confirmar, aviso, pintarCuentaNav } from "./comunidad-ui.js";
 
 const CLAVE_ORDEN = "klevor_orden_opiniones"; // cookie de preferencias: solo con permiso
 const ORDENES = { recientes: "Más recientes", mejores: "Mejor valoradas", peores: "Peor valoradas" };
@@ -76,7 +76,16 @@ function accionesDe(o) {
         if (await ventanaOpinion(usuario, perfil, o)) { aviso("Opinión actualizada."); recargar(); }
       } }));
   }
-  if (mia || K.esModerador(usuario)) {
+  const moderador = K.esModerador(usuario);
+  if (moderador) {
+    acc.push(el("button", { type: "button", clase: "k-btn k-btn-borde k-btn-mini", texto: o.respuesta ? "Cambiar respuesta" : "Responder",
+      onclick: async () => { if (await ventanaResponder(o)) { aviso("Respuesta guardada."); recargar(); } } }));
+    if (!mia) {
+      acc.push(el("button", { type: "button", clase: "k-btn k-btn-borde k-btn-mini", texto: "Editar (moderar)",
+        onclick: async () => { if (await ventanaModerar(o)) { aviso("Corrección guardada."); recargar(); } } }));
+    }
+  }
+  if (mia || moderador) {
     acc.push(el("button", { type: "button", clase: "k-btn k-btn-peligro k-btn-mini", texto: mia ? "Borrar" : "Borrar (moderar)",
       onclick: async () => {
         const ok = await confirmar({ titulo: "¿Borrar esta opinión?", texto: "Se borrará para siempre y no se puede deshacer.",

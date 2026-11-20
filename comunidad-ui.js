@@ -55,6 +55,14 @@ export function tarjetaOpinion(o, { mia = false, acciones = [] } = {}) {
     estrellas(o.estrellas),
     el("p", { texto: o.comentario }),
     o.sugerencia ? el("div", { clase: "k-sugerencia" }, el("small", { texto: "Sugerencia" }), el("p", { texto: o.sugerencia })) : null,
+    o.moderada ? el("span", { clase: "k-moderada", title: "El moderador ha corregido parte del texto para cumplir las normas de la comunidad.",
+      texto: "Editada por moderación" }) : null,
+    o.respuesta ? el("div", { clase: "k-respuesta" },
+      el("div", { clase: "k-respuesta-cabeza" },
+        el("img", { src: "imagenes/icono.png", alt: "", width: 22, height: 22 }),
+        el("b", { texto: "Respuesta de KLEVOR" }),
+        o.respondida ? el("time", { datetime: o.respondida.toISOString(), texto: fecha(o.respondida) }) : null),
+      el("p", { texto: o.respuesta })) : null,
     acciones.length ? el("div", { clase: "k-acciones" }, acciones) : null);
   return t;
 }
@@ -193,6 +201,66 @@ export function ventanaOpinion(u, perfil, existente = null) {
         guardar.disabled = false;
         guardar.textContent = existente ? "Guardar cambios" : "Publicar opinión";
       }
+    });
+    const cerrar = abrirVentana(form, { alCerrar: () => { if (!guardado) resolver(false); } });
+    cancelar.addEventListener("click", () => cerrar());
+  });
+}
+
+/** Moderador: responder como KLEVOR. Devuelve true si se guardó. */
+export function ventanaResponder(o) {
+  return new Promise((resolver) => {
+    let guardado = false;
+    const area = el("textarea", { id: "k-respuesta", rows: 5, maxlength: 1000, placeholder: "¡Gracias por tu opinión! …" });
+    area.value = o.respuesta || "";
+    const error = el("div", { clase: "k-error", role: "alert", hidden: true });
+    const ok = el("button", { type: "submit", clase: "k-btn k-btn-principal", texto: "Publicar respuesta" });
+    const quitar = o.respuesta ? el("button", { type: "button", clase: "k-btn k-btn-peligro", texto: "Quitar respuesta" }) : null;
+    const cancelar = el("button", { type: "button", clase: "k-btn k-btn-borde", texto: "Cancelar" });
+    const guardar = async (texto) => {
+      ok.disabled = true;
+      try { await K.responder(o.id, texto); guardado = true; cerrar(); resolver(true); }
+      catch (e) { error.textContent = K.mensajeError(e); error.hidden = false; ok.disabled = false; }
+    };
+    const form = el("form", { novalidate: true },
+      el("h2", { texto: "Responder como KLEVOR" }),
+      el("p", { clase: "k-intro", texto: `Tu respuesta aparecerá debajo de la opinión de «${o.alias}», con el nombre «Respuesta de KLEVOR».` }),
+      error,
+      el("div", { clase: "k-campo" }, el("label", { for: "k-respuesta", texto: "Respuesta" }), area),
+      el("div", { clase: "k-pie-ventana" }, quitar, cancelar, ok));
+    form.addEventListener("submit", (e) => { e.preventDefault(); if (area.value.trim()) guardar(area.value); });
+    if (quitar) quitar.addEventListener("click", () => guardar(null));
+    const cerrar = abrirVentana(form, { alCerrar: () => { if (!guardado) resolver(false); } });
+    cancelar.addEventListener("click", () => cerrar());
+  });
+}
+
+/** Moderador: corregir el texto de una opinión ajena (queda marcada). Devuelve true si se guardó. */
+export function ventanaModerar(o) {
+  return new Promise((resolver) => {
+    let guardado = false;
+    const comentario = el("textarea", { id: "k-mod-comentario", rows: 5, maxlength: 1000 });
+    comentario.value = o.comentario;
+    const sugerencia = el("textarea", { id: "k-mod-sugerencia", rows: 3, maxlength: 500 });
+    sugerencia.value = o.sugerencia || "";
+    const error = el("div", { clase: "k-error", role: "alert", hidden: true });
+    const ok = el("button", { type: "submit", clase: "k-btn k-btn-principal", texto: "Guardar corrección" });
+    const cancelar = el("button", { type: "button", clase: "k-btn k-btn-borde", texto: "Cancelar" });
+    const form = el("form", { novalidate: true },
+      el("h2", { texto: "Editar como moderador" }),
+      el("p", { clase: "k-intro", texto: `Úsalo para quitar insultos, enlaces o datos personales del texto de «${o.alias}». ` +
+        "La opinión mostrará «Editada por moderación». Las estrellas no se pueden cambiar." }),
+      error,
+      el("div", { clase: "k-campo" }, el("label", { for: "k-mod-comentario", texto: "Comentario" }), comentario),
+      el("div", { clase: "k-campo" }, el("label", { for: "k-mod-sugerencia", texto: "Sugerencia" }), sugerencia),
+      el("div", { clase: "k-pie-ventana" }, cancelar, ok));
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      ok.disabled = true;
+      try {
+        await K.moderarTexto(o.id, { comentario: comentario.value, sugerencia: sugerencia.value });
+        guardado = true; cerrar(); resolver(true);
+      } catch (err) { error.textContent = K.mensajeError(err); error.hidden = false; ok.disabled = false; }
     });
     const cerrar = abrirVentana(form, { alCerrar: () => { if (!guardado) resolver(false); } });
     cancelar.addEventListener("click", () => cerrar());
