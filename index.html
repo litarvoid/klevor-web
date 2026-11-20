@@ -9,6 +9,7 @@
 <meta property="og:description" content="Gratis, sin cuentas y lo que hablas se queda en tu PC.">
 <meta property="og:image" content="imagenes/portada.png">
 <link rel="icon" href="imagenes/icono.png">
+<link rel="stylesheet" href="cookies.css">
 <style>
 :root{--fondo:#070c1c;--fondo2:#0b1226;--tarjeta:#0f1a38;--borde:#1f3566;--azul:#2f8cff;--azul2:#7fc4ff;--texto:#dbe8ff;--suave:#9fb4e0}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -71,6 +72,8 @@ details[open] summary::after{content:"–"}
 details p{color:var(--suave);padding-bottom:16px}
 footer{border-top:1px solid #12204a;padding:36px 0;color:#6f84b3;font-size:14px}
 footer p{margin-bottom:8px}
+footer .legal a,footer .legal button{color:#9fb4e0}
+footer .legal a:hover{color:#fff}
 @media (max-width:820px){
   header .centro,.dos{grid-template-columns:1fr}
   .esfera{max-width:320px;order:-1}
@@ -215,8 +218,10 @@ footer p{margin-bottom:8px}
   <div class="centro">
     <p><b>KLEVOR</b> · hecho con ilusión y con ayuda de la IA Claude.</p>
     <p>KLEVOR usa programas libres de otras personas: la IA Qwen 3.5 (Apache 2.0), llama.cpp (MIT), Whisper y faster-whisper (MIT), las voces Piper y espeak-ng (GPL-3.0), la voz inglesa «Ryan» (datos RyanSpeech, CC BY-NC-SA 4.0) y Qt / PySide6 (LGPL-3.0). Gracias a todos ellos. El código de las partes con licencia GPL está disponible a quien lo pida.</p>
+    <p class="legal"><a href="cookies.html">Política de cookies</a> · <button type="button" class="kc-enlace-boton" data-kc-abrir>Configurar cookies</button></p>
   </div>
 </footer>
+<script src="cookies.js" defer></script>
 
 </body>
 </html>
