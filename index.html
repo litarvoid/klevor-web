@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>KLEVOR · Tu asistente de voz que vive en tu PC</title>
+<title>KLEVOR (beta) · Tu asistente de voz que vive en tu PC</title>
 <meta name="description" content="KLEVOR es un asistente de voz gratis para Windows: hablas con él, hace cosas en tu PC, te avisa y busca información. Sin cuentas y sin que tus conversaciones salgan de tu ordenador.">
 <meta property="og:title" content="KLEVOR · Tu asistente de voz que vive en tu PC">
 <meta property="og:description" content="Gratis, sin cuentas y lo que hablas se queda en tu PC.">
@@ -33,6 +33,9 @@ h1{font-size:clamp(48px,8vw,96px);line-height:1;color:#fff;letter-spacing:1px}
 .frase{font-size:clamp(22px,3vw,32px);color:var(--azul2);margin:14px 0 18px}
 .intro{color:#c9d8f5;max-width:540px;margin-bottom:28px}
 .botones{display:flex;gap:14px;flex-wrap:wrap}
+.beta{display:inline-block;vertical-align:top;margin:6px 0 0 14px;font-size:clamp(14px,1.6vw,18px);letter-spacing:2px;font-weight:700;color:#1a1100;background:linear-gradient(135deg,#ffd166,#ff9f43);padding:6px 12px;border-radius:999px;box-shadow:0 6px 24px rgba(255,170,60,.35)}
+.franja{background:linear-gradient(90deg,#3a2a06,#4a3208);border-bottom:1px solid #7a5a1a;color:#ffe2a8;text-align:center;font-size:15px;padding:9px 16px}
+.franja b{color:#ffd166}
 .chips{margin-top:26px;display:flex;gap:10px;flex-wrap:wrap}
 .chip{font-size:14px;color:var(--suave);border:1px solid var(--borde);border-radius:999px;padding:5px 12px}
 .esfera{width:100%;max-width:470px;justify-self:center;animation:flotar 5s ease-in-out infinite;filter:drop-shadow(0 20px 50px rgba(40,120,255,.35))}
@@ -79,6 +82,8 @@ footer p{margin-bottom:8px}
 </head>
 <body>
 
+<div class="franja">🧪 <b>KLEVOR está en fase beta.</b> Funciona, pero aún está en pruebas: puede tener fallos y cambiará mucho. ¡Tu opinión ayuda a mejorarlo!</div>
+
 <nav>
   <div class="centro">
     <a class="marca" href="#"><img src="imagenes/icono.png" alt="">KLEVOR</a>
@@ -94,14 +99,14 @@ footer p{margin-bottom:8px}
 <header class="portada">
   <div class="centro">
     <div>
-      <h1>KLEVOR</h1>
+      <h1>KLEVOR<span class="beta">BETA</span></h1>
       <p class="frase">Tu asistente de voz que vive en tu PC</p>
       <p class="intro">Habla con KLEVOR como hablarías con una persona. Te contesta en voz alta, hace cosas en tu ordenador, te avisa de lo que tengas pendiente y busca información por ti.</p>
       <div class="botones">
         <a class="boton principal" href="#descargar">⬇ Descargar gratis</a>
-        <!-- Cuando haya Ko-fi: <a class="boton secundario" href="#apoyar">☕ Apoyar el proyecto</a> -->
+        <a class="boton secundario" href="#apoyar">☕ Apoyar el proyecto</a>
       </div>
-      <div class="chips"><span class="chip">Gratis</span><span class="chip">Sin cuentas</span><span class="chip">Nada sale de tu PC</span><span class="chip">Windows 10 y 11</span></div>
+      <div class="chips"><span class="chip">Versión beta</span><span class="chip">Gratis</span><span class="chip">Sin cuentas</span><span class="chip">Nada sale de tu PC</span><span class="chip">Windows 10 y 11</span></div>
     </div>
     <img class="esfera" src="imagenes/esfera_portada.png" alt="La esfera de KLEVOR hablando">
   </div>
@@ -165,16 +170,18 @@ footer p{margin-bottom:8px}
         <li>Windows 10 u 11 (de 64 bits)</li>
         <li>8 GB de memoria RAM (recomendado)</li>
         <li>Unos 4 GB libres en el disco</li>
+        <li>Internet mientras se instala</li>
         <li>Micrófono y altavoces o cascos</li>
         <li>No hace falta tarjeta gráfica (si tienes, va más rápido)</li>
       </ul>
-      <a class="boton principal" href="https://1drv.ms/f/c/5dea9342459262f0/IgBC9blB5IJbT4ST8duBNpGrAZRCjNkJBqBMHy7i3GS2eBE?e=DtEWFk" target="_blank" rel="noopener" id="boton-descarga">⬇ Descargar KLEVOR</a>
+      <p class="aviso" style="margin:0 0 16px">🧪 Es una <b>versión beta</b>: puede tener fallos. Si encuentras alguno, cuéntamelo y lo arreglo.</p>
+      <a class="boton principal" href="https://github.com/litarvoid/klevor-web/releases/latest/download/KLEVOR-Instalador.exe" id="boton-descarga">⬇ Descargar KLEVOR</a>
+      <p style="color:var(--suave);font-size:14px;margin-top:10px">Un solo archivo de unos 120 MB. Gratis y sin registrarte.</p>
     </div>
     <div>
       <ol class="pasos">
-        <li>Pulsa «Descargar» y baja la carpeta completa (son 3 archivos, unos 3,4 GB).</li>
-        <li>Si se baja como .zip, descomprímelo: los 3 archivos tienen que estar juntos.</li>
-        <li>Abre <b>KLEVOR-Instalador.exe</b>.</li>
+        <li>Pulsa «Descargar»: se baja <b>KLEVOR-Instalador.exe</b> (unos 120 MB).</li>
+        <li>Ábrelo y sigue los pasos. Durante la instalación se descarga sola la inteligencia artificial (unos 3,4 GB): tarda unos minutos.</li>
         <li>Abre KLEVOR desde el icono del escritorio y di: <b>«Oye KLEVOR, ¿qué tal?»</b></li>
       </ol>
       <div class="aviso">Si Windows dice «Windows protegió tu PC», pulsa <b>Más información</b> y luego <b>Ejecutar de todas formas</b>. Sale porque KLEVOR es un programa nuevo y gratuito, sin una firma de pago.</div>
@@ -182,19 +189,18 @@ footer p{margin-bottom:8px}
   </div>
 </section>
 
-<!-- APOYAR (se activa cuando haya enlace de Ko-fi)
 <section class="apoyo" id="apoyar">
   <div class="centro">
     <h2>KLEVOR es gratis</h2>
     <p class="sub">Lo hago yo solo, en mi tiempo libre, y siempre será gratis. Si te gusta y quieres que siga mejorando, puedes invitarme a un café. Cualquier ayuda me anima muchísimo.</p>
-    <a class="boton principal" href="[ENLACE_KOFI]" id="boton-kofi">☕ Invítame a un café</a>
+    <a class="boton principal" href="https://paypal.me/klevorai" target="_blank" rel="noopener" id="boton-donar">☕ Donar con PayPal</a>
   </div>
 </section>
--->
 
 <section id="preguntas">
   <div class="centro" style="max-width:820px">
     <h2>Preguntas frecuentes</h2>
+    <details><summary>¿Qué significa que está en beta?</summary><p>Que KLEVOR ya funciona y se puede usar cada día, pero todavía está en pruebas: puede equivocarse, tener algún fallo o cambiar de una versión a otra. Las versiones nuevas irán arreglando lo que salga.</p></details>
     <details><summary>¿Es gratis de verdad?</summary><p>Sí. Sin anuncios, sin suscripciones y sin cuentas.</p></details>
     <details><summary>¿Me escucha todo el rato?</summary><p>Escucha solo para saber si dices «Oye KLEVOR». Lo que dices sin llamarle se descarta al momento: no se guarda ni se envía a ningún sitio. Puedes apagar el micrófono cuando quieras.</p></details>
     <details><summary>¿Puede borrar mis archivos?</summary><p>Solo si se lo pides, y siempre te pregunta antes. Lo que borra va a la papelera, así que se puede recuperar. Nunca toca Windows ni los programas instalados.</p></details>
