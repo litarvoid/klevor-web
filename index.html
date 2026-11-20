@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KLEVOR · Tu asistente de voz que vive en tu PC</title>
+<meta name="description" content="KLEVOR es un asistente de voz gratis para Windows: hablas con él, hace cosas en tu PC, te avisa y busca información. Sin cuentas y sin que tus conversaciones salgan de tu ordenador.">
+<meta property="og:title" content="KLEVOR · Tu asistente de voz que vive en tu PC">
+<meta property="og:description" content="Gratis, sin cuentas y lo que hablas se queda en tu PC.">
+<meta property="og:image" content="imagenes/portada.png">
+<link rel="icon" href="imagenes/icono.png">
+<style>
+:root{--fondo:#070c1c;--fondo2:#0b1226;--tarjeta:#0f1a38;--borde:#1f3566;--azul:#2f8cff;--azul2:#7fc4ff;--texto:#dbe8ff;--suave:#9fb4e0}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--fondo);color:var(--texto);font-family:"Segoe UI",system-ui,-apple-system,Roboto,sans-serif;line-height:1.6;font-size:17px}
+a{color:var(--azul2)}
+.centro{max-width:1100px;margin:0 auto;padding:0 22px}
+nav{position:sticky;top:0;z-index:10;background:rgba(7,12,28,.85);backdrop-filter:blur(8px);border-bottom:1px solid #12204a}
+nav .centro{display:flex;align-items:center;justify-content:space-between;height:62px}
+.marca{display:flex;align-items:center;gap:10px;font-weight:700;font-size:20px;color:#fff;text-decoration:none;letter-spacing:.5px}
+.marca img{width:32px;height:32px}
+nav .enlaces a{color:var(--suave);text-decoration:none;margin-left:22px;font-size:15px}
+nav .enlaces a:hover{color:#fff}
+.boton{display:inline-block;padding:13px 26px;border-radius:12px;font-weight:600;text-decoration:none;font-size:17px;transition:transform .15s,background .15s}
+.boton:hover{transform:translateY(-2px)}
+.principal{background:var(--azul);color:#fff;box-shadow:0 8px 30px rgba(47,140,255,.35)}
+.principal:hover{background:#4a9cff}
+.secundario{border:1px solid var(--borde);color:#fff;background:var(--tarjeta)}
+header.portada{position:relative;overflow:hidden;background:radial-gradient(circle at 75% 45%,rgba(40,120,255,.28),transparent 55%),linear-gradient(135deg,#060b1a,#0d1a3d)}
+header .centro{display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:30px;padding-top:60px;padding-bottom:70px}
+h1{font-size:clamp(48px,8vw,96px);line-height:1;color:#fff;letter-spacing:1px}
+.frase{font-size:clamp(22px,3vw,32px);color:var(--azul2);margin:14px 0 18px}
+.intro{color:#c9d8f5;max-width:540px;margin-bottom:28px}
+.botones{display:flex;gap:14px;flex-wrap:wrap}
+.chips{margin-top:26px;display:flex;gap:10px;flex-wrap:wrap}
+.chip{font-size:14px;color:var(--suave);border:1px solid var(--borde);border-radius:999px;padding:5px 12px}
+.esfera{width:100%;max-width:470px;justify-self:center;animation:flotar 5s ease-in-out infinite;filter:drop-shadow(0 20px 50px rgba(40,120,255,.35))}
+@keyframes flotar{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+section{padding:80px 0}
+section.alt{background:var(--fondo2)}
+h2{font-size:clamp(30px,4vw,42px);color:#fff;margin-bottom:12px;line-height:1.2}
+.sub{color:var(--suave);max-width:640px;margin-bottom:36px}
+.rejilla{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.tarjeta{background:var(--tarjeta);border:1px solid var(--borde);border-radius:16px;padding:22px}
+.tarjeta .emoji{font-size:30px}
+.tarjeta h3{color:#fff;font-size:19px;margin:8px 0 6px}
+.tarjeta p{color:var(--suave);font-size:15.5px}
+.dos{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.captura{width:100%;border-radius:14px;border:1px solid var(--borde);box-shadow:0 20px 60px rgba(0,0,0,.45)}
+.estados{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:28px}
+.estados figure{background:var(--fondo2);border:1px solid var(--borde);border-radius:14px;overflow:hidden;text-align:center}
+.estados img{width:100%;display:block}
+.estados figcaption{padding:8px;color:var(--suave);font-size:14px}
+.lista{list-style:none;margin:18px 0}
+.lista li{padding-left:30px;position:relative;margin:8px 0;color:#c9d8f5}
+.lista li::before{content:"✓";position:absolute;left:4px;color:var(--azul);font-weight:700}
+.pasos{counter-reset:paso;list-style:none}
+.pasos li{counter-increment:paso;position:relative;padding:4px 0 14px 52px;color:#c9d8f5}
+.pasos li::before{content:counter(paso);position:absolute;left:0;top:0;width:36px;height:36px;border-radius:50%;background:var(--azul);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700}
+.aviso{background:#14223f;border:1px solid #2a4f8f;border-radius:12px;padding:14px 16px;color:#c9d8f5;font-size:15px;margin-top:6px}
+.apoyo{text-align:center;background:radial-gradient(circle at 50% 0,rgba(47,140,255,.2),transparent 60%),var(--fondo2)}
+.apoyo .sub{margin-left:auto;margin-right:auto}
+details{background:var(--tarjeta);border:1px solid var(--borde);border-radius:12px;margin-bottom:10px;padding:0 18px}
+summary{cursor:pointer;padding:16px 0;color:#fff;font-weight:600;list-style:none}
+summary::after{content:"+";float:right;color:var(--azul2);font-size:22px;line-height:1}
+details[open] summary::after{content:"–"}
+details p{color:var(--suave);padding-bottom:16px}
+footer{border-top:1px solid #12204a;padding:36px 0;color:#6f84b3;font-size:14px}
+footer p{margin-bottom:8px}
+@media (max-width:820px){
+  header .centro,.dos{grid-template-columns:1fr}
+  .esfera{max-width:320px;order:-1}
+  .estados{grid-template-columns:repeat(2,1fr)}
+  nav .enlaces a:not(.boton){display:none}
+  section{padding:56px 0}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="centro">
+    <a class="marca" href="#"><img src="imagenes/icono.png" alt="">KLEVOR</a>
+    <div class="enlaces">
+      <a href="#que-hace">Qué hace</a>
+      <a href="#privacidad">Privacidad</a>
+      <a href="#preguntas">Preguntas</a>
+      <a href="#descargar" class="boton principal" style="padding:8px 16px;font-size:15px;margin-left:22px">Descargar</a>
+    </div>
+  </div>
+</nav>
+
+<header class="portada">
+  <div class="centro">
+    <div>
+      <h1>KLEVOR</h1>
+      <p class="frase">Tu asistente de voz que vive en tu PC</p>
+      <p class="intro">Habla con KLEVOR como hablarías con una persona. Te contesta en voz alta, hace cosas en tu ordenador, te avisa de lo que tengas pendiente y busca información por ti.</p>
+      <div class="botones">
+        <a class="boton principal" href="#descargar">⬇ Descargar gratis</a>
+        <!-- Cuando haya Ko-fi: <a class="boton secundario" href="#apoyar">☕ Apoyar el proyecto</a> -->
+      </div>
+      <div class="chips"><span class="chip">Gratis</span><span class="chip">Sin cuentas</span><span class="chip">Nada sale de tu PC</span><span class="chip">Windows 10 y 11</span></div>
+    </div>
+    <img class="esfera" src="imagenes/esfera_portada.png" alt="La esfera de KLEVOR hablando">
+  </div>
+</header>
+
+<section id="que-hace">
+  <div class="centro">
+    <h2>Mucho más que responder preguntas</h2>
+    <p class="sub">Di «Oye KLEVOR» y pídele lo que necesites. Si no puedes hablar en voz alta, también puedes escribirle.</p>
+    <div class="rejilla">
+      <div class="tarjeta"><div class="emoji">💻</div><h3>Hace cosas en tu PC</h3><p>Busca archivos, libera espacio, abre programas y páginas web, sube el volumen, pone música o hace capturas. Antes de cambiar nada, te pregunta.</p></div>
+      <div class="tarjeta"><div class="emoji">⏰</div><h3>Te organiza</h3><p>Recordatorios, alarmas, temporizadores, notas y listas («añade leche a la lista de la compra»). Y un «buenos días» con el tiempo, tus avisos y las noticias.</p></div>
+      <div class="tarjeta"><div class="emoji">🌍</div><h3>Sabe lo que pasa hoy</h3><p>El tiempo, noticias, Wikipedia, cambio de moneda y la hora en cualquier ciudad. Si preguntas algo reciente, lo busca antes de contestar.</p></div>
+      <div class="tarjeta"><div class="emoji">🎮</div><h3>Juegos y amigos</h3><p>Te dice qué amigos están conectados en Steam y Discord, abre tus juegos y te avisa de las ofertas.</p></div>
+      <div class="tarjeta"><div class="emoji">🧠</div><h3>Te recuerda</h3><p>«Recuerda que mi equipo es el Madrid»: lo tendrá en cuenta siempre. Y guarda tus chats como ChatGPT, con un título para cada uno.</p></div>
+      <div class="tarjeta"><div class="emoji">🗣️</div><h3>Habla inglés</h3><p>Si le hablas en inglés, te contesta en inglés, con su propia voz.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="privacidad">
+  <div class="centro dos">
+    <div>
+      <h2>Lo tuyo se queda en tu PC</h2>
+      <p class="sub" style="margin-bottom:10px">KLEVOR lleva su propia inteligencia artificial dentro.</p>
+      <ul class="lista">
+        <li>Tu voz se convierte en texto en tu ordenador.</li>
+        <li>La IA piensa en tu ordenador, no en un servidor.</li>
+        <li>Tus conversaciones se guardan solo en tu ordenador.</li>
+        <li>Sin cuentas, sin suscripciones y sin anuncios.</li>
+        <li>A internet solo sale lo justo cuando le pides algo de internet (la ciudad para el tiempo, por ejemplo), nunca tu conversación.</li>
+      </ul>
+    </div>
+    <img class="captura" src="imagenes/esfera_reposo.png" alt="La esfera de KLEVOR en reposo">
+  </div>
+</section>
+
+<section>
+  <div class="centro">
+    <h2>Bonito y fácil de usar</h2>
+    <p class="sub">Una esfera flotante que se mueve cuando te escucha, piensa o habla. Si estás jugando, puede aparecer solo cuando la llamas, o no aparecer nunca y que solo la oigas.</p>
+    <div class="dos">
+      <img class="captura" src="imagenes/chats.png" alt="La ventana de chats de KLEVOR">
+      <img class="captura" src="imagenes/ajustes.png" alt="Los ajustes de KLEVOR">
+    </div>
+    <div class="estados">
+      <figure><img src="imagenes/esfera_reposo.png" alt=""><figcaption>En reposo</figcaption></figure>
+      <figure><img src="imagenes/esfera_escuchando.png" alt=""><figcaption>Escuchando</figcaption></figure>
+      <figure><img src="imagenes/esfera_pensando.png" alt=""><figcaption>Pensando</figcaption></figure>
+      <figure><img src="imagenes/esfera_hablando.png" alt=""><figcaption>Hablando</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="descargar">
+  <div class="centro dos">
+    <div>
+      <h2>Descárgalo gratis</h2>
+      <p class="sub" style="margin-bottom:8px">Lo que necesitas:</p>
+      <ul class="lista">
+        <li>Windows 10 u 11 (de 64 bits)</li>
+        <li>8 GB de memoria RAM (recomendado)</li>
+        <li>Unos 4 GB libres en el disco</li>
+        <li>Micrófono y altavoces o cascos</li>
+        <li>No hace falta tarjeta gráfica (si tienes, va más rápido)</li>
+      </ul>
+      <a class="boton principal" href="https://1drv.ms/f/c/5dea9342459262f0/IgBC9blB5IJbT4ST8duBNpGrAZRCjNkJBqBMHy7i3GS2eBE?e=DtEWFk" target="_blank" rel="noopener" id="boton-descarga">⬇ Descargar KLEVOR</a>
+    </div>
+    <div>
+      <ol class="pasos">
+        <li>Pulsa «Descargar» y baja la carpeta completa (son 3 archivos, unos 3,4 GB).</li>
+        <li>Si se baja como .zip, descomprímelo: los 3 archivos tienen que estar juntos.</li>
+        <li>Abre <b>KLEVOR-Instalador.exe</b>.</li>
+        <li>Abre KLEVOR desde el icono del escritorio y di: <b>«Oye KLEVOR, ¿qué tal?»</b></li>
+      </ol>
+      <div class="aviso">Si Windows dice «Windows protegió tu PC», pulsa <b>Más información</b> y luego <b>Ejecutar de todas formas</b>. Sale porque KLEVOR es un programa nuevo y gratuito, sin una firma de pago.</div>
+    </div>
+  </div>
+</section>
+
+<!-- APOYAR (se activa cuando haya enlace de Ko-fi)
+<section class="apoyo" id="apoyar">
+  <div class="centro">
+    <h2>KLEVOR es gratis</h2>
+    <p class="sub">Lo hago yo solo, en mi tiempo libre, y siempre será gratis. Si te gusta y quieres que siga mejorando, puedes invitarme a un café. Cualquier ayuda me anima muchísimo.</p>
+    <a class="boton principal" href="[ENLACE_KOFI]" id="boton-kofi">☕ Invítame a un café</a>
+  </div>
+</section>
+-->
+
+<section id="preguntas">
+  <div class="centro" style="max-width:820px">
+    <h2>Preguntas frecuentes</h2>
+    <details><summary>¿Es gratis de verdad?</summary><p>Sí. Sin anuncios, sin suscripciones y sin cuentas.</p></details>
+    <details><summary>¿Me escucha todo el rato?</summary><p>Escucha solo para saber si dices «Oye KLEVOR». Lo que dices sin llamarle se descarta al momento: no se guarda ni se envía a ningún sitio. Puedes apagar el micrófono cuando quieras.</p></details>
+    <details><summary>¿Puede borrar mis archivos?</summary><p>Solo si se lo pides, y siempre te pregunta antes. Lo que borra va a la papelera, así que se puede recuperar. Nunca toca Windows ni los programas instalados.</p></details>
+    <details><summary>¿Necesito internet?</summary><p>Para hablar con él, no. Solo para lo que es de internet: el tiempo, las noticias, Wikipedia…</p></details>
+    <details><summary>¿Funciona en Mac, Linux o el móvil?</summary><p>De momento solo en Windows.</p></details>
+    <details><summary>No me oye bien, ¿qué hago?</summary><p>En Ajustes → Escucha y voz → «Probar micrófono» verás si te llega la voz. Prueba otro micrófono o sube la sensibilidad.</p></details>
+  </div>
+</section>
+
+<footer>
+  <div class="centro">
+    <p><b>KLEVOR</b> · hecho con ilusión y con ayuda de la IA Claude.</p>
+    <p>KLEVOR usa programas libres de otras personas: la IA Qwen 3.5 (Apache 2.0), llama.cpp (MIT), Whisper y faster-whisper (MIT), las voces Piper y espeak-ng (GPL-3.0), la voz inglesa «Ryan» (datos RyanSpeech, CC BY-NC-SA 4.0) y Qt / PySide6 (LGPL-3.0). Gracias a todos ellos. El código de las partes con licencia GPL está disponible a quien lo pida.</p>
+  </div>
+</footer>
+
+</body>
+</html>
