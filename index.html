@@ -10,6 +10,7 @@
 <meta property="og:image" content="imagenes/portada.png">
 <link rel="icon" href="imagenes/icono.png">
 <link rel="stylesheet" href="cookies.css">
+<link rel="stylesheet" href="comunidad.css">
 <style>
 :root{--fondo:#070c1c;--fondo2:#0b1226;--tarjeta:#0f1a38;--borde:#1f3566;--azul:#2f8cff;--azul2:#7fc4ff;--texto:#dbe8ff;--suave:#9fb4e0}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -93,8 +94,10 @@ footer .legal a:hover{color:#fff}
     <div class="enlaces">
       <a href="#que-hace">Qué hace</a>
       <a href="#privacidad">Privacidad</a>
+      <a href="#comunidad">Comunidad</a>
       <a href="#preguntas">Preguntas</a>
       <a href="#descargar" class="boton principal" style="padding:8px 16px;font-size:15px;margin-left:22px">Descargar</a>
+      <span class="k-cuenta-nav" id="cuenta-nav"></span>
     </div>
   </div>
 </nav>
@@ -192,6 +195,24 @@ footer .legal a:hover{color:#fff}
   </div>
 </section>
 
+<section class="k-comunidad" id="comunidad">
+  <div class="centro">
+    <div class="k-cabecera">
+      <div>
+        <h2>Comunidad KLEVOR</h2>
+        <p class="sub">Lo que dicen nuestros usuarios. Opiniones reales de personas con cuenta de Google.</p>
+      </div>
+      <button type="button" class="k-btn k-btn-principal" data-escribir>✍️ Escribir una opinión</button>
+    </div>
+    <div class="k-resumen" data-resumen hidden></div>
+    <div class="k-controles">
+      <div class="k-orden" data-orden role="group" aria-label="Ordenar opiniones"></div>
+    </div>
+    <div class="k-cargando" data-lista aria-live="polite"><div></div><div></div><div></div></div>
+    <div class="k-mas" data-mas></div>
+  </div>
+</section>
+
 <section class="apoyo" id="apoyar">
   <div class="centro">
     <h2>KLEVOR es gratis</h2>
@@ -218,10 +239,11 @@ footer .legal a:hover{color:#fff}
   <div class="centro">
     <p><b>KLEVOR</b> · hecho con ilusión y con ayuda de la IA Claude.</p>
     <p>KLEVOR usa programas libres de otras personas: la IA Qwen 3.5 (Apache 2.0), llama.cpp (MIT), Whisper y faster-whisper (MIT), las voces Piper y espeak-ng (GPL-3.0), la voz inglesa «Ryan» (datos RyanSpeech, CC BY-NC-SA 4.0) y Qt / PySide6 (LGPL-3.0). Gracias a todos ellos. El código de las partes con licencia GPL está disponible a quien lo pida.</p>
-    <p class="legal"><a href="cookies.html">Política de cookies</a> · <button type="button" class="kc-enlace-boton" data-kc-abrir>Configurar cookies</button></p>
+    <p class="legal"><a href="privacidad.html">Privacidad</a> · <a href="cookies.html">Política de cookies</a> · <button type="button" class="kc-enlace-boton" data-kc-abrir>Configurar cookies</button></p>
   </div>
 </footer>
 <script src="cookies.js" defer></script>
+<script type="module" src="comunidad.js"></script>
 
 </body>
 </html>

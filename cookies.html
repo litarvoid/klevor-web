@@ -50,11 +50,12 @@ footer{border-top:1px solid #12204a;padding:30px 0;color:#6f84b3;font-size:14px}
 
 <main class="centro">
   <h1>Política de cookies</h1>
-  <p class="fecha">Última actualización: 20 de noviembre de 2026</p>
+  <p class="fecha">Última actualización: 20 de noviembre de 2026 (versión 2: cuentas y opiniones)</p>
 
   <div class="resumen">
-    <p><b>En resumen:</b> esta web solo guarda una cosa en tu navegador, lo que eliges en el aviso de cookies.
-    No usamos cookies de estadísticas, ni de publicidad, ni herramientas de seguimiento de terceros.</p>
+    <p><b>En resumen:</b> esta web guarda en tu navegador lo que eliges en el aviso de cookies y, solo si inicias
+    sesión con Google para opinar, tu sesión. Si lo aceptas, también recuerda cómo ordenas las opiniones.
+    No usamos cookies de estadísticas, ni de publicidad, ni herramientas de seguimiento.</p>
   </div>
 
   <h2>¿Qué son las cookies?</h2>
@@ -69,16 +70,40 @@ footer{border-top:1px solid #12204a;padding:30px 0;color:#6f84b3;font-size:14px}
       <tr><td><code>klevor_consentimiento</code><br><small>(almacenamiento local)</small></td><td>Técnica o necesaria</td>
         <td>Recordar si aceptaste, rechazaste o configuraste las cookies, para no volver a preguntarte en cada visita.</td>
         <td>Propia (esta web)</td><td>12 meses; después se vuelve a preguntar</td></tr>
+      <tr><td><code>klevor_sesion</code><br><small>(almacenamiento local)</small></td><td>Técnica o necesaria</td>
+        <td>Saber que iniciaste sesión, para recuperarla al volver. <b>Solo existe si inicias sesión.</b></td>
+        <td>Propia (esta web)</td><td>Hasta que cierres sesión</td></tr>
+      <tr><td><code>firebaseLocalStorageDb</code><br><small>(IndexedDB del navegador)</small></td><td>Técnica o necesaria</td>
+        <td>Mantener tu sesión de Google abierta en la web de forma segura. Lo gestiona Firebase Authentication
+        (Google), el servicio que usamos para las cuentas. <b>Solo existe si inicias sesión.</b></td>
+        <td>Propia (esta web), creada por Firebase</td><td>Hasta que cierres sesión</td></tr>
+      <tr><td><code>firebase-heartbeat-database</code><br><small>(IndexedDB del navegador)</small></td><td>Técnica o necesaria</td>
+        <td>Registro interno de Firebase con la fecha de uso del servicio, necesario para su funcionamiento.
+        No contiene datos tuyos. <b>Solo existe si inicias sesión.</b></td>
+        <td>Propia (esta web), creada por Firebase</td><td>Lo gestiona Firebase (se renueva a diario)</td></tr>
+      <tr><td>Cookies de Google en la ventana de inicio de sesión</td><td>De Google</td>
+        <td>Al pulsar «Iniciar sesión» se abre una ventana de <b>accounts.google.com</b>, que usa sus propias cookies
+        para que entres en tu cuenta. Las controla Google, no esta web.
+        <a href="https://policies.google.com/technologies/cookies?hl=es" target="_blank" rel="noopener">Política de cookies de Google</a>.</td>
+        <td>Google</td><td>Las que indique Google</td></tr>
+      <tr><td><code>klevor_orden_opiniones</code><br><small>(almacenamiento local)</small></td><td>De preferencias</td>
+        <td>Recordar cómo prefieres ordenar las opiniones (más recientes, mejor o peor valoradas).
+        <b>Solo si aceptas las cookies de preferencias.</b></td>
+        <td>Propia (esta web)</td><td>Hasta que retires el consentimiento</td></tr>
     </tbody>
   </table></div>
-  <p>Las cookies técnicas no necesitan tu consentimiento porque sin ellas la web no podría recordar tu decisión.</p>
+  <p>Las cookies técnicas no necesitan tu consentimiento: sin ellas la web no podría recordar tu decisión ni
+  mantener la sesión que tú mismo has pedido abrir.</p>
+  <p>Para mostrar las opiniones, la web descarga las opiniones de la base de datos de Firebase (Google) cuando llegas
+  a esa sección. Esa descarga <b>no instala cookies</b>, aunque, como al visitar cualquier servidor, Google recibe tu
+  dirección IP. Más detalles en la <a href="privacidad.html">política de privacidad</a>.</p>
 
   <h2>Lo que no usamos</h2>
   <ul>
-    <li><b>Preferencias:</b> ahora mismo no se usa ninguna.</li>
     <li><b>Analíticas</b> (estadísticas de visitas, como Google Analytics): no se usa ninguna.</li>
     <li><b>Publicitarias:</b> no se usa ninguna. KLEVOR no tiene anuncios.</li>
-    <li>La web no carga fuentes, vídeos, botones sociales ni otros contenidos de terceros que puedan poner cookies.</li>
+    <li>La web no carga fuentes, vídeos, botones sociales ni otros contenidos de terceros que pongan cookies. Firebase
+    solo se carga cuando hace falta: al llegar a las opiniones o al iniciar sesión.</li>
   </ul>
   <p>Si en el futuro añadimos alguna de estas herramientas, actualizaremos esta política y te volveremos a preguntar.
   Hasta que no la aceptes, seguirá desactivada.</p>
@@ -105,12 +130,11 @@ footer{border-top:1px solid #12204a;padding:30px 0;color:#6f84b3;font-size:14px}
     <a href="https://support.apple.com/es-es/guide/safari/sfri11471/mac" target="_blank" rel="noopener">Safari</a>.</p>
 
   <h2>Contacto</h2>
-  <p>Si tienes dudas sobre esta política, puedes escribirnos abriendo una consulta en el
-  <a href="https://github.com/litarvoid/klevor-web/issues" target="_blank" rel="noopener">proyecto de la web en GitHub</a>.</p>
+  <p>Si tienes dudas sobre esta política, escríbenos a <a href="mailto:ai.klevor@gmail.com">ai.klevor@gmail.com</a>.</p>
 </main>
 
 <footer><div class="centro">
-  <p><b>KLEVOR</b> · <a href="./">Inicio</a> · <button type="button" class="kc-enlace-boton" data-kc-abrir>Configurar cookies</button></p>
+  <p><b>KLEVOR</b> · <a href="./">Inicio</a> · <a href="privacidad.html">Privacidad</a> · <button type="button" class="kc-enlace-boton" data-kc-abrir>Configurar cookies</button></p>
 </div></footer>
 <script src="cookies.js" defer></script>
 </body>

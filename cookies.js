@@ -11,7 +11,7 @@
 (function () {
   "use strict";
   var CLAVE = "klevor_consentimiento";
-  var VERSION = 1;
+  var VERSION = 2; // 2: llegan las cuentas y el orden de las opiniones
   var DURACION = 365 * 24 * 60 * 60 * 1000; // 12 meses
   var CATEGORIAS = ["preferencias", "analiticas", "publicidad"];
 
@@ -65,9 +65,9 @@
     aviso = el(
       '<section class="kc-aviso" role="region" aria-label="Aviso de cookies">' +
       '<h2>🍪 Tu privacidad, tu decisión</h2>' +
-      '<p>Las cookies son pequeños archivos que una web guarda en tu navegador. KLEVOR solo usa lo ' +
-      'imprescindible para funcionar: recordar lo que elijas aquí. No usamos cookies de estadísticas ni de ' +
-      'publicidad, y si algún día las añadimos, estarán apagadas hasta que tú las aceptes. ' +
+      '<p>Las cookies son pequeños archivos que una web guarda en tu navegador. KLEVOR usa lo ' +
+      'imprescindible para funcionar (recordar lo que elijas aquí y, si inicias sesión, mantenerla) y, solo si lo ' +
+      'aceptas, recuerda cómo prefieres ordenar las opiniones. No usamos cookies de estadísticas ni de publicidad. ' +
       '<a href="cookies.html">Política de cookies</a>.</p>' +
       '<div class="kc-botones">' +
       '<button type="button" class="kc-boton kc-rechazar" data-accion="rechazar">Rechazar las no necesarias</button>' +
@@ -106,10 +106,10 @@
       '<p class="kc-intro">Elige qué permites. Lo no necesario está apagado hasta que lo actives, y puedes ' +
       'cambiarlo cuando quieras desde «Configurar cookies», al final de la página.</p>' +
       categoriaHTML("necesarias", "Técnicas o necesarias",
-        "Imprescindibles para que la web funcione. Hoy solo hay una: recordar lo que eliges en este aviso " +
-        "(se guarda en tu navegador 12 meses).", "", true) +
+        "Imprescindibles para que la web funcione: recordar lo que eliges en este aviso (12 meses) y, solo si " +
+        "inicias sesión con Google, mantener tu sesión abierta.", "", true) +
       categoriaHTML("preferencias", "De preferencias",
-        "Permitirían recordar ajustes tuyos de la web, como el idioma.", "Ahora mismo no se usa ninguna") +
+        "Recuerdan ajustes tuyos de la web. Hoy solo una: cómo prefieres ordenar las opiniones de la comunidad.", "") +
       categoriaHTML("analiticas", "Analíticas",
         "Servirían para saber cómo se usa la página (visitas, secciones más vistas) y mejorarla.",
         "Ahora mismo no se usa ninguna") +
