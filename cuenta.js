@@ -1,6 +1,6 @@
 // Página «Mi cuenta»: datos de Google, preferencias, mis opiniones y eliminar la cuenta.
 import * as K from "./klevor-firebase.js";
-import { el, avatar, fecha, tarjetaOpinion, ventanaOpinion, confirmar, aviso, pintarCuentaNav, ICONO_GOOGLE } from "./comunidad-ui.js";
+import { el, avatar, fecha, tarjetaOpinion, ventanaOpinion, confirmar, aviso, pintarCuentaNav, abrirVentana, ICONO_GOOGLE } from "./comunidad-ui.js";
 
 const main = document.getElementById("contenido");
 const navCaja = document.getElementById("cuenta-nav");
@@ -116,6 +116,54 @@ async function pintarCuenta(u) {
   }
   pintarMias(mias);
 
+  // ---------- mis chats con KLEVOR (los guarda la app si inicias sesión en ella)
+  const listaChats = el("div", { clase: "chats" }, el("p", { clase: "cargando", texto: "Cargando tus chats…" }));
+  const bloqueChats = el("section", { clase: "bloque", id: "mis-chats", "aria-labelledby": "t-chats" },
+    el("h3", { id: "t-chats", texto: "💬 Mis chats con KLEVOR" }),
+    el("p", { clase: "sub2", texto: "Las conversaciones que has tenido con la app de KLEVOR en tu PC. Se guardan aquí si " +
+      "inicias sesión en la app (Ajustes → Cuentas → Cuenta de KLEVOR). Solo tú puedes verlas." }),
+    listaChats);
+  async function pintarChats() {
+    let chats;
+    try { chats = await K.misChats(u); } catch (e) {
+      listaChats.replaceChildren(el("p", { clase: "sub2", texto: K.mensajeError(e) })); return;
+    }
+    if (!chats.length) {
+      listaChats.replaceChildren(el("div", { clase: "k-vacio" }, el("b", { texto: "Aún no hay chats guardados" }),
+        el("span", { texto: "Abre KLEVOR en tu PC, ve a Ajustes → Cuentas → Cuenta de KLEVOR e inicia sesión con esta " +
+          "misma cuenta de Google. Tus conversaciones aparecerán aquí." })));
+      return;
+    }
+    listaChats.replaceChildren(...chats.map((c) => el("article", { clase: "chat" },
+      el("div", { clase: "chat-cabeza" },
+        el("div", {},
+          el("b", { texto: c.titulo }),
+          el("small", { texto: `${fecha(c.actualizada)} · ${c.mensajes.length} mensajes` })),
+        el("div", { clase: "k-acciones" },
+          el("button", { type: "button", clase: "k-btn k-btn-borde k-btn-mini", texto: "Ver",
+            onclick: () => verChat(c) }),
+          el("button", { type: "button", clase: "k-btn k-btn-peligro k-btn-mini", texto: "Borrar",
+            onclick: async () => {
+              if (!await confirmar({ titulo: "¿Borrar este chat de tu cuenta?", boton: "Borrar", peligro: true,
+                texto: "Se borra de tu cuenta (en la web). En el PC donde lo tuviste sigue guardado." })) return;
+              try { await K.borrarChat(u, c.id); aviso("Chat borrado."); pintarChats(); }
+              catch (e) { aviso(K.mensajeError(e), 5000); }
+            } }))))));
+  }
+  function verChat(c) {
+    const burbujas = c.mensajes.map((m) => el("div", { clase: "burbuja " + (m.deKlevor ? "de-klevor" : "tuya") },
+      el("small", { texto: (m.deKlevor ? "KLEVOR" : "Tú") + (m.fecha ? " · " + m.fecha.toLocaleTimeString("es-ES",
+        { hour: "2-digit", minute: "2-digit" }) : "") }),
+      el("p", { texto: m.texto })));
+    const cerrar = abrirVentana([
+      el("h2", { texto: c.titulo }),
+      el("p", { clase: "k-intro", texto: `${fecha(c.creada)} · ${c.mensajes.length} mensajes` }),
+      el("div", { clase: "conversacion" }, burbujas),
+      el("div", { clase: "k-pie-ventana" }, el("button", { type: "button", clase: "k-btn k-btn-principal", texto: "Cerrar",
+        onclick: () => cerrar() }))]);
+  }
+  pintarChats();
+
   // ---------- sesión y eliminar
   const sesion = el("section", { clase: "bloque", "aria-labelledby": "t-sesion" },
     el("h3", { id: "t-sesion", texto: "Sesión" }),
@@ -133,7 +181,7 @@ async function pintarCuenta(u) {
       el("button", { type: "button", clase: "k-btn k-btn-peligro", texto: "Eliminar cuenta",
         onclick: async () => {
           const ok = await confirmar({ titulo: "¿Eliminar tu cuenta?",
-            texto: `Se borrarán para siempre tus ${mias.length} opiniones, tus preferencias y tu cuenta de la web de KLEVOR. ` +
+            texto: `Se borrarán para siempre tus ${mias.length} opiniones, tus chats guardados, tus preferencias y tu cuenta de la web de KLEVOR. ` +
               "Google te pedirá confirmar que eres tú.", boton: "Eliminar para siempre", peligro: true, escribir: "ELIMINAR" });
           if (!ok) return;
           try {
@@ -155,6 +203,7 @@ async function pintarCuenta(u) {
       "«Editar (moderar)» para quitar insultos, enlaces o datos personales (se marca como «Editada por moderación») y «Borrar (moderar)»." }),
     el("a", { href: "./#comunidad", clase: "k-btn k-btn-principal", texto: "Ir a moderar opiniones" })) : null;
 
-  main.replaceChildren(el("h1", { texto: "Mi cuenta" }), cabecera, moderacion, preferencias, bloqueMias, sesion, eliminar);
+  main.replaceChildren(el("h1", { texto: "Mi cuenta" }), cabecera, moderacion, bloqueChats, preferencias, bloqueMias, sesion, eliminar);
   if (location.hash === "#mis-opiniones") bloqueMias.scrollIntoView({ behavior: "smooth", block: "start" });
+  if (location.hash === "#mis-chats") bloqueChats.scrollIntoView({ behavior: "smooth", block: "start" });
 }

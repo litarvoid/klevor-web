@@ -270,6 +270,26 @@ export async function borrar(id) {
 }
 
 /** Borra sus opiniones, su perfil y su cuenta de Firebase. */
+// ------------------------------------------------------------------ tus chats (los sube la app)
+/** Tus chats con KLEVOR guardados por la app (solo tu cuenta puede leerlos). Del más reciente al más antiguo. */
+export async function misChats(u) {
+  const { f, db } = await fs();
+  const q = f.query(f.collection(db, "usuarios", u.uid, "chats"), f.orderBy("actualizada", "desc"), f.limit(200));
+  return (await f.getDocs(q)).docs.map((s) => {
+    const d = s.data();
+    return {
+      id: s.id, titulo: d.titulo || "Conversación", equipo: d.equipo || "",
+      creada: d.creada ? d.creada.toDate() : new Date(), actualizada: d.actualizada ? d.actualizada.toDate() : new Date(),
+      mensajes: (d.mensajes || []).map((m) => ({ deKlevor: m.r === "k", texto: m.t || "", fecha: m.f ? m.f.toDate() : null })),
+    };
+  });
+}
+
+export async function borrarChat(u, id) {
+  const { f, db } = await fs();
+  await f.deleteDoc(f.doc(db, "usuarios", u.uid, "chats", id));
+}
+
 export async function eliminarCuenta(u) {
   const { a } = await au();
   const { f, db } = await fs();
@@ -279,6 +299,7 @@ export async function eliminarCuenta(u) {
   await a.reauthenticateWithPopup(u, proveedor);
   const lote = f.writeBatch(db);
   for (const o of await misOpiniones(u)) lote.delete(f.doc(db, "opiniones", o.id));
+  for (const c of await misChats(u)) lote.delete(f.doc(db, "usuarios", u.uid, "chats", c.id));  // tus chats de la app
   lote.delete(f.doc(db, "usuarios", u.uid));
   await lote.commit();
   await a.deleteUser(u);

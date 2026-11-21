@@ -289,6 +289,7 @@ export function pintarCuentaNav(caja, u, { alSalir } = {}) {
     menu = el("div", { clase: "k-menu", role: "menu" },
       el("div", { clase: "k-quien" }, el("b", { texto: u.displayName || "Tu cuenta" }), el("span", { texto: u.email || "" })),
       el("a", { href: "cuenta.html", role: "menuitem", texto: "Mi cuenta" }),
+      el("a", { href: "cuenta.html#mis-chats", role: "menuitem", texto: "Mis chats" }),
       el("a", { href: "cuenta.html#mis-opiniones", role: "menuitem", texto: "Mis opiniones" }),
       el("button", { type: "button", role: "menuitem", texto: "Cerrar sesión",
         onclick: async () => { cerrarMenu(); await K.salir(); aviso("Has cerrado sesión."); if (alSalir) alSalir(); } }));
