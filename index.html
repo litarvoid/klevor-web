@@ -26,6 +26,7 @@ nav .enlaces a{color:var(--suave);text-decoration:none;margin-left:22px;font-siz
 nav .enlaces a:hover{color:#fff}
 .boton{display:inline-block;padding:13px 26px;border-radius:12px;font-weight:600;text-decoration:none;font-size:17px;transition:transform .15s,background .15s}
 .boton:hover{transform:translateY(-2px)}
+[hidden]{display:none!important}
 .principal{background:var(--azul);color:#fff;box-shadow:0 8px 30px rgba(47,140,255,.35)}
 .principal:hover{background:#4a9cff}
 .secundario{border:1px solid var(--borde);color:#fff;background:var(--tarjeta)}
@@ -112,7 +113,7 @@ footer .legal a:hover{color:#fff}
         <a class="boton principal" href="#descargar">⬇ Descargar gratis</a>
         <a class="boton secundario" href="#apoyar">☕ Apoyar el proyecto</a>
       </div>
-      <div class="chips"><span class="chip">Versión beta</span><span class="chip">Gratis</span><span class="chip">Sin cuentas obligatorias</span><span class="chip">La IA funciona en tu PC</span><span class="chip">Windows 10 y 11</span><span class="chip">Mejor con NVIDIA</span></div>
+      <div class="chips"><span class="chip">Versión beta</span><span class="chip">Gratis</span><span class="chip">Sin cuentas obligatorias</span><span class="chip">La IA funciona en tu PC</span><span class="chip">Funciona sin internet</span><span class="chip">Windows 10 y 11</span><span class="chip">Mejor con NVIDIA</span></div>
     </div>
     <img class="esfera" src="imagenes/esfera_portada.png" alt="La esfera de KLEVOR hablando">
   </div>
@@ -127,12 +128,13 @@ footer .legal a:hover{color:#fff}
       <div class="tarjeta"><div class="emoji">⏰</div><h3>Te organiza</h3><p>Recordatorios, alarmas, temporizadores, notas y listas («añade leche a la lista de la compra»). Y un «buenos días» con el tiempo, tus avisos y las noticias.</p></div>
       <div class="tarjeta"><div class="emoji">🌍</div><h3>Sabe lo que pasa hoy</h3><p>El tiempo, noticias, Wikipedia, cambio de moneda y la hora en cualquier ciudad. Si preguntas algo reciente, lo busca antes de contestar.</p></div>
       <div class="tarjeta"><div class="emoji">🎮</div><h3>Juegos y amigos</h3><p>Te dice qué amigos están conectados en Steam y Discord, abre tus juegos y te avisa de las ofertas.</p></div>
-      <div class="tarjeta"><div class="emoji">🧠</div><h3>Te recuerda</h3><p>«Recuerda que mi equipo es el Madrid»: lo tendrá en cuenta siempre. Y guarda tus chats como ChatGPT, con un título para cada uno.</p></div>
-      <div class="tarjeta"><div class="emoji">🗣️</div><h3>Una voz natural</h3><p>Habla con una voz muy natural, sin internet. Y si le hablas en inglés, te contesta en inglés.</p></div>
+      <div class="tarjeta"><div class="emoji">🧠</div><h3>Recuerda lo que le cuentas</h3><p>«Mi hermana se llama Laura»: semanas después le preguntas «¿cómo se llama mi hermana?» y lo sabe, porque busca por el significado, no por palabras exactas. Y guarda tus chats como ChatGPT, con un título para cada uno.</p></div>
+      <div class="tarjeta"><div class="emoji">🗣️</div><h3>Una voz casi humana</h3><p>Habla con voces naturales que funcionan sin internet. Y si tu PC puede moverla, <b>Edd</b>: una voz casi humana, con la entonación y el ritmo de una persona (se descarga en Ajustes). Si le hablas en inglés, te contesta en inglés.</p></div>
       <div class="tarjeta"><div class="emoji">✉️</div><h3>Lee tu correo</h3><p>«¿Tengo correos nuevos?», «léeme el último de Amazon». Conecta tu Gmail en Ajustes: KLEVOR solo lee, nunca envía ni borra, y el permiso se queda en tu PC.</p></div>
       <div class="tarjeta"><div class="emoji">💬</div><h3>Tus chats, también en la web</h3><p>Si quieres, inicia sesión en la app con Google y tus conversaciones se guardan en tu cuenta: las ves desde el móvil en Mi cuenta → Mis chats. Solo tú puedes verlas.</p></div>
       <div class="tarjeta"><div class="emoji">📅</div><h3>Tu calendario</h3><p>«¿Qué tengo mañana?», «apunta dentista el martes a las 5». Conecta tu Google Calendar en Ajustes: ve tus citas y apunta las nuevas, siempre preguntando antes.</p></div>
-      <div class="tarjeta"><div class="emoji">👁️</div><h3>Mira tu pantalla</h3><p>«¿Qué pone en este error?»: hace una captura, la entiende y te lo explica. Solo cuando se lo pides, sin guardarla y sin que salga de tu PC (se activa en Ajustes).</p></div>
+      <div class="tarjeta"><div class="emoji">👁️</div><h3>Mira tu pantalla</h3><p>«¿Qué pone en este error?»: hace una captura, la entiende y te lo explica. Todo dentro de tu PC, incluso sin internet. Solo cuando se lo pides y sin guardar la captura (se activa en Ajustes).</p></div>
+      <div class="tarjeta"><div class="emoji">⚙️</div><h3>Se ajusta a tu PC</h3><p>Mira tu memoria y tu tarjeta gráfica y decide solo qué cargar para que todo vaya fluido, tengas un portátil sencillo o un PC potente. Lo ves en Ajustes → Sistema → «Tu PC».</p></div>
     </div>
   </div>
 </section>
@@ -145,6 +147,7 @@ footer .legal a:hover{color:#fff}
       <ul class="lista">
         <li>Tu voz se convierte en texto en tu ordenador.</li>
         <li>La IA piensa en tu ordenador, no en un servidor.</li>
+        <li>Funciona sin internet: la IA, el oído, la voz y la vista van dentro de tu PC.</li>
         <li>Tus conversaciones se guardan en tu ordenador. Solo si tú inicias sesión en la app, también en tu cuenta, para verlas en la web (y solo las ves tú).</li>
         <li>Sin cuentas obligatorias, sin suscripciones y sin anuncios.</li>
         <li>A internet solo sale lo justo cuando le pides algo de internet (la ciudad para el tiempo, por ejemplo), nunca tu conversación.</li>
@@ -186,12 +189,16 @@ footer .legal a:hover{color:#fff}
       </ul>
       <p class="aviso" style="margin:0 0 16px">🧪 Es una <b>versión beta</b>: puede tener fallos. Si encuentras alguno, cuéntamelo y lo arreglo.</p>
       <a class="boton principal" href="https://github.com/litarvoid/klevor-web/releases/latest/download/KLEVOR-Instalador.exe" id="boton-descarga">⬇ Descargar KLEVOR</a>
+      <!-- Botón de la Microsoft Store: está oculto («hidden») hasta que Microsoft apruebe y se publique KLEVOR.
+           Para enseñarlo, quita la palabra hidden de las dos líneas siguientes. -->
+      <a class="boton secundario" href="https://apps.microsoft.com/detail/9NLDKP3T721Q" id="boton-tienda" target="_blank" rel="noopener" style="margin-top:10px" hidden>🛍 Consíguelo en Microsoft Store</a>
       <p style="color:var(--suave);font-size:14px;margin-top:10px">Un solo archivo de unos 128 MB. Gratis y sin registrarte. Después se actualiza solo.</p>
+      <p style="color:var(--suave);font-size:14px;margin-top:4px" id="nota-tienda" hidden>¿Prefieres la Microsoft Store? Allí se instala con todo dentro (unos 4,4 GB) y Windows lo mantiene al día.</p>
     </div>
     <div>
       <ol class="pasos">
         <li>Pulsa «Descargar»: se baja <b>KLEVOR-Instalador.exe</b> (unos 128 MB).</li>
-        <li>Ábrelo y sigue los pasos. Durante la instalación se descargan solas la inteligencia artificial y las voces (unos 3,7 GB): tarda unos minutos.</li>
+        <li>Ábrelo y sigue los pasos. Durante la instalación se descargan solas la inteligencia artificial y las voces (unos 3,8 GB): tarda unos minutos.</li>
         <li>Abre KLEVOR desde el icono del escritorio y di: <b>«Oye KLEVOR, ¿qué tal?»</b></li>
       </ol>
       <div class="aviso">Si Windows dice «Windows protegió tu PC», pulsa <b>Más información</b> y luego <b>Ejecutar de todas formas</b>. Sale porque KLEVOR es un programa nuevo y gratuito, sin una firma de pago.</div>
