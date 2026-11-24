@@ -24,6 +24,7 @@ main{padding:56px 0 70px}
 h1{font-size:clamp(34px,6vw,48px);color:#fff;line-height:1.15;margin-bottom:10px}
 .fecha{color:var(--suave);font-size:15px;margin-bottom:34px}
 h2{font-size:24px;color:#fff;margin:38px 0 10px}
+h3{font-size:19px;color:#fff;margin:24px 0 8px}
 p,li{color:#c9d8f5}
 p{margin-bottom:12px}
 ul{margin:0 0 12px 22px}
@@ -50,13 +51,15 @@ footer{border-top:1px solid #12204a;padding:30px 0;color:#6f84b3;font-size:14px}
 
 <main class="centro">
   <h1>Política de privacidad</h1>
-  <p class="fecha">Última actualización: 20 de noviembre de 2026</p>
+  <p class="fecha">Última actualización: 24 de noviembre de 2026</p>
 
   <div class="resumen">
     <p><b>En resumen:</b> para ver la web no necesitas darnos ningún dato. Solo si quieres publicar una opinión,
     inicias sesión con Google y guardamos lo mínimo para identificarte y evitar abusos. Tu correo nunca se muestra.
     Puedes borrar tu cuenta y todos tus datos cuando quieras desde «Mi cuenta». El programa KLEVOR que instalas en tu PC
-    no envía tus conversaciones a ningún sitio y no tiene nada que ver con esta cuenta.</p>
+    trabaja dentro de tu PC: solo envía algo si tú lo activas (tus chats a tu cuenta, o un informe de fallo). Si
+    conectas tu Gmail o tu Google Calendar, el permiso y tus datos se quedan en tu PC (lo explicamos
+    <a href="#google">más abajo</a>).</p>
   </div>
 
   <h2>Quién es el responsable</h2>
@@ -117,26 +120,85 @@ footer{border-top:1px solid #12204a;padding:30px 0;color:#6f84b3;font-size:14px}
     <li>En modo privado no se guarda nada, ni en el PC ni en la cuenta. Sin iniciar sesión, los chats solo están en tu PC.</li>
   </ul>
 
-  <h2>La app KLEVOR, tu correo y tu calendario (opcional)</h2>
-  <p>El programa KLEVOR que instalas en tu PC puede leer tu Gmail si tú lo conectas en Ajustes → Cuentas → Correo.
-  En ese caso:</p>
+  <h2 id="google">La app KLEVOR, tu Gmail y tu Google Calendar (opcional)</h2>
+  <p>El programa KLEVOR que instalas en tu PC puede usar tu Gmail y tu Google Calendar <b>solo si tú los conectas</b>
+  en Ajustes → Cuentas. Esto es lo que hace con esos datos de Google, cómo los protege, cuánto tiempo los conserva y
+  cómo se borran.</p>
+
+  <h3>Qué datos de Google usa y para qué</h3>
   <ul>
-    <li>Google te pide permiso para que KLEVOR <b>solo lea</b> tus correos («gmail.readonly»). KLEVOR nunca envía, borra
-    ni cambia correos, y al leerlos no los marca como leídos.</li>
-    <li>El permiso (un «token» de Google) se guarda <b>solo en tu PC</b>. Los correos se leen y se resumen en tu PC con la
-    IA integrada; no pasan por ningún servidor nuestro ni se guardan en ningún sitio.</li>
-    <li>Si eliges un cerebro de internet en Ajustes, KLEVOR no lee tus correos (salvo que lo permitas expresamente).</li>
-    <li>Puedes desconectarlo cuando quieras en Ajustes (se borra el permiso y se le devuelve a Google) o desde
-    <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">los permisos de tu cuenta de Google</a>.</li>
-    <li>El uso de los datos de Google cumple la
-    <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">política
-    de datos de usuario de los servicios de API de Google</a>, incluidos sus requisitos de uso limitado.</li>
+    <li><b>Gmail, solo lectura</b> (permiso «gmail.readonly»): para contestarte cuando le preguntas por tus correos
+    («¿tengo correos nuevos?», «léeme el último correo de Amazon»). KLEVOR nunca envía, borra ni cambia correos, y al
+    leerlos no los marca como leídos.</li>
+    <li><b>Google Calendar</b> (permiso «calendar.events»): para decirte tus citas, avisarte poco antes de una cita (si
+    tienes ese aviso encendido) y apuntar las citas nuevas que le pidas, <b>siempre preguntándote antes</b>. Nunca borra
+    ni cambia tus citas.</li>
+    <li>Solo se leen cuando hacen falta para algo que pides (o para el aviso de citas que tú activas).</li>
   </ul>
-  <p>También puedes conectar tu <b>Google Calendar</b> (permiso «calendar.events»): KLEVOR lee tus citas para
-  decírtelas y apunta las nuevas que le pidas, <b>siempre preguntándote antes</b>. Nunca borra ni cambia tus citas.
-  El permiso se guarda solo en tu PC, igual que el del correo, y se desconecta de la misma forma.</p>
-  <p>Google todavía no ha revisado KLEVOR para leer correos: al conectar verás el aviso «Google no ha verificado esta
-  aplicación», y como mucho 100 cuentas pueden conectarse por ahora.</p>
+
+  <h3>Uso limitado</h3>
+  <p>El uso de los datos de Google cumple la
+  <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">política
+  de datos de usuario de los servicios de API de Google</a>, incluidos sus requisitos de uso limitado. En concreto:
+  tus datos de Gmail y Calendar solo se usan para darte esas funciones; <b>no se venden, no se usan para publicidad,
+  no se comparten con nadie y no se usan para entrenar ningún modelo de inteligencia artificial</b>. Nadie del equipo
+  de KLEVOR los lee ni los usa.</p>
+
+  <h3>Cómo se protegen</h3>
+  <ul>
+    <li><b>Se quedan en tu PC.</b> KLEVOR habla directamente con Google desde tu PC. No hay ningún servidor nuestro en
+    medio: tus correos y tus citas no pasan por nosotros. (Solo lo que KLEVOR te contesta se guarda en tu cuenta,
+    si activas los chats en tu cuenta; ver «Cuánto tiempo se conservan».)</li>
+    <li><b>Conexión cifrada.</b> Toda la comunicación con Google va cifrada (HTTPS/TLS).</li>
+    <li><b>Nunca vemos tu contraseña.</b> El permiso se da en la página de Google, en tu navegador, con el sistema
+    oficial de Google (OAuth 2.0 con PKCE). KLEVOR solo recibe un permiso («token») limitado a lo que tú aceptas.</li>
+    <li><b>El permiso se guarda solo en tu PC</b>, en la carpeta de datos de KLEVOR, dentro de tu usuario de Windows.
+    Nunca se sube a internet. El permiso de uso dura como mucho una hora y se renueva solo mientras sigas conectado.</li>
+    <li><b>Los correos se leen en la memoria del programa</b>, solo para contestarte, y no se guardan copias en el
+    disco. La IA integrada que los lee y los resume funciona dentro de tu PC.</li>
+    <li><b>Con un cerebro de internet</b> (si lo eliges en Ajustes en vez de la IA integrada), KLEVOR no le pasa tus
+    correos, salvo que lo permitas expresamente en Ajustes. Las citas que le preguntes sí las procesa ese servicio que
+    has elegido, igual que el resto de lo que le dices. Con la IA integrada (la de serie), nada sale de tu PC.</li>
+    <li><b>Los informes de fallos no llevan tus datos de Google:</b> solo datos técnicos (ver más abajo).</li>
+    <li><b>Lo mínimo:</b> KLEVOR pide solo los permisos que necesita (leer el correo, sin poder cambiarlo).</li>
+  </ul>
+
+  <h3>Cuánto tiempo se conservan</h3>
+  <ul>
+    <li><b>El contenido de tus correos y citas:</b> no se conserva. Se lee cuando lo pides y se olvida al contestar.</li>
+    <li><b>Lo que KLEVOR te contesta</b> (por ejemplo, el resumen de un correo que le pediste) forma parte de tu
+    conversación, como cualquier otra respuesta: se guarda en tus chats en tu PC hasta que lo borres y, si tienes
+    activados los chats en tu cuenta, también en tu cuenta (ver «Tus chats en tu cuenta»). En modo privado no se
+    guarda nada.</li>
+    <li><b>El registro técnico del programa</b> (en tu PC, para poder ver qué ha fallado) puede incluir esas
+    respuestas. Solo se guardan la sesión actual y la anterior: al abrir KLEVOR se sustituye.</li>
+    <li><b>El permiso de Google:</b> mientras sigas conectado.</li>
+  </ul>
+
+  <h3>Cómo se borran</h3>
+  <ul>
+    <li><b>Desconectar</b> en Ajustes → Cuentas: KLEVOR borra el permiso de tu PC y se lo devuelve a Google (lo
+    revoca), así que deja de poder acceder al momento.</li>
+    <li>También puedes quitarle el permiso desde
+    <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">los permisos de tu cuenta de
+    Google</a>.</li>
+    <li>Tus chats se borran desde KLEVOR o desde <a href="cuenta.html">Mi cuenta</a> (uno a uno, o todos al eliminar
+    tu cuenta).</li>
+    <li>Al desinstalar KLEVOR se conserva su carpeta de datos (tu memoria y tus ajustes) por si vuelves a instalarlo.
+    Para borrarlo todo, desconecta antes tu cuenta de Google en Ajustes y después borra esa carpeta. Si necesitas
+    ayuda, escríbenos a <a href="mailto:ai.klevor@gmail.com">ai.klevor@gmail.com</a>.</li>
+  </ul>
+  <p>Google todavía no ha terminado de revisar KLEVOR para leer correos: al conectar verás el aviso «Google no ha
+  verificado esta aplicación», y como mucho 100 cuentas pueden conectarse por ahora.</p>
+
+  <h2>Informes de fallos (opcional)</h2>
+  <p>Si KLEVOR falla, te pregunta si quieres enviarnos un informe para arreglarlo (se puede cambiar en Ajustes →
+  Sistema). Antes de enviarlo puedes ver exactamente qué se manda. Solo se envía si aceptas, y lleva: la versión de
+  KLEVOR y de Windows, un resumen del equipo (procesador, memoria, gráfica), el error técnico, las últimas líneas
+  técnicas del registro y el comentario que escribas. Se quitan tu nombre de usuario, las rutas de tus archivos, los
+  correos electrónicos y las claves. <b>No lleva tus conversaciones ni tus datos de Google.</b> Se guarda en la base de
+  datos de Firebase (Google), en Madrid; solo el equipo de KLEVOR puede leerlo, y lo borramos cuando el fallo está
+  arreglado y, como mucho, a los 12 meses. Base legal: tu consentimiento.</p>
 
   <h2>Edad mínima</h2>
   <p>Para crear una cuenta y publicar opiniones debes tener al menos 14 años.</p>
